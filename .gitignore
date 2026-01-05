@@ -1,0 +1,37 @@
+# The Filter of the Void: Ignoring the ephemeral and the sensitive
+
+# Dependencies - The heavy weights of the previous iteration
+node_modules/
+.pnp
+.pnp.js
+
+# Testing - Anomalies filtered before manifestation
+coverage/
+
+# Next.js - The temporary scaffolding of the Dimensional Framework
+.next/
+out/
+
+# Production - The final synthesized artifacts
+build/
+
+# KeyMaster Ops - Absolute protection of secrets and tokens
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# Debugging - Temporal logs of the execution protocol
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# System Files - Dimensional noise from unmanifested OS layers
+.DS_Store
+*.pem
+
+# Vercel - Deployment metadata
+.vercel
