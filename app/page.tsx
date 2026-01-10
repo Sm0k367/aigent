@@ -2,7 +2,7 @@
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Stars, Float } from "@react-three/drei";
-import { useRef } from "react";
+import { useRef, useEffect } from "react"; // Added useEffect
 import { useChat } from "ai/react";
 
 function AgentOrb({ position }: { position: [number, number, number] }) {
@@ -80,8 +80,7 @@ export default function Home() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  // Auto-scroll on new messages
-  useRef(() => {
+  useEffect(() => {
     scrollToBottom();
   }, [messages]);
 
@@ -105,7 +104,7 @@ export default function Home() {
           hasChatStarted ? "opacity-0" : "opacity-100"
         }`}
       >
-        <h1 className="text-7xl md:text-9xl font-bold text-epic-gold tracking-wider mb-8 animate-pulse-slow">
+        <h1 className="text-7xl md:text-9xl font-bold text-epic-gold tracking-wider mb-8 animate-pulse">
           AIGENT
         </h1>
         <p className="text-2xl md:text-4xl text-epic-gold opacity-80">
@@ -116,7 +115,7 @@ export default function Home() {
       {/* Chat interface overlay */}
       <div className="absolute inset-x-0 bottom-0 flex justify-center pointer-events-none pb-8">
         <div className="pointer-events-auto w-full max-w-3xl px-4">
-          <div className="bg-void-deep/90 backdrop-blur-lg rounded-xl shadow-2xl border border-epic-gold/30 overflow-hidden">
+          <div className="bg-void-black/90 backdrop-blur-lg rounded-xl shadow-2xl border border-epic-gold/30 overflow-hidden">
             <div className="max-h-96 overflow-y-auto p-6 space-y-4">
               {messages.map((msg) => (
                 <div
@@ -158,12 +157,12 @@ export default function Home() {
                 onChange={handleInputChange}
                 placeholder="Command the agents..."
                 disabled={isLoading}
-                className="flex-1 bg-void-black/60 text-epic-gold placeholder-epic-gold/60 border border-epic-gold/40 rounded-xl px-5 py-3 focus:outline-none focus:border-epic-gold-glow disabled:opacity-50"
+                className="flex-1 bg-void-black/60 text-epic-gold placeholder-epic-gold/60 border border-epic-gold/40 rounded-xl px-5 py-3 focus:outline-none focus:border-epic-gold"
               />
               <button
                 type="submit"
                 disabled={isLoading || !input.trim()}
-                className="bg-epic-gold text-void-black px-8 py-3 rounded-xl font-bold hover:bg-epic-gold-glow transition disabled:opacity-50"
+                className="bg-epic-gold text-void-black px-8 py-3 rounded-xl font-bold hover:bg-epic-gold transition disabled:opacity-50"
               >
                 {isLoading ? "..." : "Send"}
               </button>
