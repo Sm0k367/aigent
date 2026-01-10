@@ -1,8 +1,8 @@
 "use client";
 
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stars, Float } from "@react-three/drei";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 
 function AgentOrb({ position }: { position: [number, number, number] }) {
   const meshRef = useRef<THREE.Mesh>(null);
@@ -46,7 +46,6 @@ function Scene() {
         speed={1}
       />
 
-      {/* Initial agent orbs — representing the "army" awakening */}
       <AgentOrb position={[-3, 1, -2]} />
       <AgentOrb position={[3, -1, -3]} />
       <AgentOrb position={[0, 2, -1]} />
@@ -57,6 +56,45 @@ function Scene() {
 }
 
 export default function Home() {
+  const [messages, setMessages] = useState<
+    { role: "user" | "assistant"; content: string }[]
+  >([
+    {
+      role: "assistant",
+      content: "AIGENT online. Sovereign intelligence awaits your command.",
+    },
+  ]);
+  const [input, setInput] = useState("");
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+
+    const userMessage = input.trim();
+    setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
+
+    // Mock assistant response (will replace with real AI later)
+    setTimeout(() => {
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: `Manifesting: "${userMessage}"` },
+      ]);
+    }, 800);
+
+    setInput("");
+  };
+
+  const hasChatStarted = messages.length > 1;
+
   return (
     <main className="relative w-full h-screen overflow-hidden">
       <Canvas camera={{ position: [0, 0, 8], fov: 60 }}>
@@ -69,14 +107,66 @@ export default function Home() {
         />
       </Canvas>
 
-      {/* Overlay welcome text */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-        <h1 className="text-7xl md:text-9xl font-bold text-epic-gold tracking-wider mb-8 animate-pulse">
+      {/* Welcome overlay — fades when chat active */}
+      <div
+        className={`absolute inset-0 flex flex-col items-center justify-center pointer-events-none transition-opacity duration-1000 ${
+          hasChatStarted ? "opacity-0" : "opacity-100"
+        }`}
+      >
+        <h1 className="text-7xl md:text-9xl font-bold text-epic-gold tracking-wider mb-8 animate-pulse-slow">
           AIGENT
         </h1>
         <p className="text-2xl md:text-4xl text-epic-gold opacity-80">
           Sovereign Intelligence Awakens
         </p>
+      </div>
+
+      {/* Chat interface overlay */}
+      <div className="absolute inset-x-0 bottom-0 flex justify-center pointer-events-none pb-8">
+        <div className="pointer-events-auto w-full max-w-3xl px-4">
+          <div className="bg-void-deep/90 backdrop-blur-lg rounded-xl shadow-2xl border border-epic-gold/30 overflow-hidden">
+            <div className="max-h-96 overflow-y-auto p-6 space-y-4">
+              {messages.map((msg, i) => (
+                <div
+                  key={i}
+                  className={`flex ${
+                    msg.role === "user" ? "justify-end" : "justify-start"
+                  }`}
+                >
+                  <div
+                    className={`max-w-md px-5 py-3 rounded-2xl shadow-md ${
+                      msg.role === "user"
+                        ? "bg-epic-gold text-void-black font-semibold"
+                        : "bg-void-black/80 text-epic-gold border border-epic-gold/20"
+                    }`}
+                  >
+                    {msg.content}
+                  </div>
+                </div>
+              ))}
+              <div ref={messagesEndRef} />
+            </div>
+
+            <form
+              onSubmit={handleSubmit}
+              className="flex gap-2 p-4 border-t border-epic-gold/20"
+            >
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Command the agents..."
+                className="flex-1 bg-void-black/60 text-epic-gold placeholder-epic-gold/60 border border-epic-gold/40 rounded-xl px-5 py-3 focus:outline-none focus:border-epic-gold-glow"
+              />
+              <button
+                type="submit"
+                className="bg-epic-gold text-void-black px-8 py-3 rounded-xl font-bold hover:bg-epic-gold-glow transition"
+              >
+                Send
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     </main>
   );
