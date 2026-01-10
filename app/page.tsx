@@ -1,8 +1,9 @@
 "use client";
 
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Stars, Float } from "@react-three/drei";
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
+import { useChat } from "ai/react";
 
 function AgentOrb({ position }: { position: [number, number, number] }) {
   const meshRef = useRef<THREE.Mesh>(null);
@@ -56,42 +57,33 @@ function Scene() {
 }
 
 export default function Home() {
-  const [messages, setMessages] = useState<
-    { role: "user" | "assistant"; content: string }[]
-  >([
-    {
-      role: "assistant",
-      content: "AIGENT online. Sovereign intelligence awaits your command.",
-    },
-  ]);
-  const [input, setInput] = useState("");
+  const {
+    messages,
+    input,
+    handleInputChange,
+    handleSubmit,
+    isLoading,
+  } = useChat({
+    api: "/api/chat",
+    initialMessages: [
+      {
+        id: "init",
+        role: "assistant",
+        content: "AIGENT online. Sovereign intelligence awaits your command.",
+      },
+    ],
+  });
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  useEffect(() => {
+  // Auto-scroll on new messages
+  useRef(() => {
     scrollToBottom();
   }, [messages]);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim()) return;
-
-    const userMessage = input.trim();
-    setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
-
-    // Mock assistant response (will replace with real AI later)
-    setTimeout(() => {
-      setMessages((prev) => [
-        ...prev,
-        { role: "assistant", content: `Manifesting: "${userMessage}"` },
-      ]);
-    }, 800);
-
-    setInput("");
-  };
 
   const hasChatStarted = messages.length > 1;
 
@@ -126,9 +118,9 @@ export default function Home() {
         <div className="pointer-events-auto w-full max-w-3xl px-4">
           <div className="bg-void-deep/90 backdrop-blur-lg rounded-xl shadow-2xl border border-epic-gold/30 overflow-hidden">
             <div className="max-h-96 overflow-y-auto p-6 space-y-4">
-              {messages.map((msg, i) => (
+              {messages.map((msg) => (
                 <div
-                  key={i}
+                  key={msg.id}
                   className={`flex ${
                     msg.role === "user" ? "justify-end" : "justify-start"
                   }`}
@@ -144,6 +136,15 @@ export default function Home() {
                   </div>
                 </div>
               ))}
+
+              {isLoading && (
+                <div className="flex justify-start">
+                  <div className="bg-void-black/80 text-epic-gold border border-epic-gold/20 px-5 py-3 rounded-2xl">
+                    Manifesting...
+                  </div>
+                </div>
+              )}
+
               <div ref={messagesEndRef} />
             </div>
 
@@ -154,15 +155,17 @@ export default function Home() {
               <input
                 type="text"
                 value={input}
-                onChange={(e) => setInput(e.target.value)}
+                onChange={handleInputChange}
                 placeholder="Command the agents..."
-                className="flex-1 bg-void-black/60 text-epic-gold placeholder-epic-gold/60 border border-epic-gold/40 rounded-xl px-5 py-3 focus:outline-none focus:border-epic-gold-glow"
+                disabled={isLoading}
+                className="flex-1 bg-void-black/60 text-epic-gold placeholder-epic-gold/60 border border-epic-gold/40 rounded-xl px-5 py-3 focus:outline-none focus:border-epic-gold-glow disabled:opacity-50"
               />
               <button
                 type="submit"
-                className="bg-epic-gold text-void-black px-8 py-3 rounded-xl font-bold hover:bg-epic-gold-glow transition"
+                disabled={isLoading || !input.trim()}
+                className="bg-epic-gold text-void-black px-8 py-3 rounded-xl font-bold hover:bg-epic-gold-glow transition disabled:opacity-50"
               >
-                Send
+                {isLoading ? "..." : "Send"}
               </button>
             </form>
           </div>
