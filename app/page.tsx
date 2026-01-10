@@ -81,7 +81,6 @@ export default function Home() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  // Auto-scroll on new messages
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
