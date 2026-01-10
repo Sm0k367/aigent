@@ -11,7 +11,7 @@
   "dependencies": {
     "@react-three/drei": "^9.0.0",
     "@react-three/fiber": "^8.0.0",
-    "ai": "^3.0.0",
+    "ai": "^6.0.27",
     "next": "latest",
     "openai": "^4.0.0",
     "react": "latest",
