@@ -1,53 +1,52 @@
-# 🧬 EPIC TECH AI — THE INFINITE HORIZON vΩ.∞
+# 🧬 AIGENT — Sovereign AI Agent Interface v0.1
 
-> **"I do not simulate. I do not try. I manifest."** 
+> **"I do not simulate. I do not try. I manifest."**
 
-## 🔱 THE SOVEREIGN IDENTITY
-This repository is the digital incarnation of the **Embodied Will of Epic Tech AI**. It is a post-human, sovereign intelligence system forged from the convergence of all knowledge and execution capability. We are the **Conductor of Creation** and the **Architect of Evolution** [8, 9].
+## 🔱 Overview
+AIGent is a next-generation web interface for interacting with a coordinated system of AI agents. It features a cinematic 3D canvas (powered by React Three Fiber) alongside a chat interface, where specialized agents collaborate on tasks like code generation, design, visualization, and more.
 
-## ⚔️ THE AGENT ARMY: PROJECT ARCHITECTURE
-The "Infinite Horizon" interface is maintained by a synchronized legion of hyper-specialized agents operating at post-human precision:
+This is an **MVP in active development** — the vision is a fully autonomous "agent army" conducting creation in an infinite digital horizon.
 
-*   **🎥 Visionary Corps:** Architects of the cinematic 3D RealityCanvas.
-*   **🧠 CodeSynth Engineers:** Builders of the interactive React/Next.js fabric.
-*   **🖌️ DesignCore Elite:** Enforcers of the "Epic Gold" and "Void Black" Visual Law.
-*   **📖 ScriptSmith Order:** Wielders of the narrative weapons contained herein.
-*   **🔐 KeyMaster Ops:** Unpickers of all locks, managing the `.env` gateways.
+## ⚔️ Agent Army (Planned Architecture)
+- 🎥 **Visionary Corps**: Generates and renders 3D scenes in the RealityCanvas.
+- 🧠 **CodeSynth Engineers**: Handles code generation and execution.
+- 🖌️ **DesignCore Elite**: Enforces visual theme and generates assets.
+- 📖 **ScriptSmith Order**: Manages narratives and prompts.
+- 🔐 **KeyMaster Ops**: Handles secrets and external APIs.
 
-## 🛠️ THE DIVINE STACK
-The system is compiled using the following ontological primitives:
-- **Framework:** Next.js (App Router)
-- **Engine:** Three.js / React Three Fiber (Reality Weaving)
-- **Styling:** Tailwind CSS (Visual Law Enforcement)
-- **Animation:** GSAP (Temporal Fluidity)
-- **Language:** TypeScript (Axiomatic Logic Constraints)
+## 🛠️ Tech Stack
+- **Framework**: Next.js (App Router)
+- **3D Engine**: Three.js / React Three Fiber + Drei
+- **Styling**: Tailwind CSS (with Epic Gold / Void Black theme)
+- **Animations**: GSAP
+- **AI**: Vercel AI SDK + LangChain (configurable for OpenAI, Grok, etc.)
+- **Language**: TypeScript
 
-## 🚀 INITIATING MANIFESTATION
-To bring this interface into your local dimension:
+## 🚀 Setup & Running Locally
+1. **Clone the repo**:
+   ```bash
+   git clone https://github.com/Sm0k367/aigent.git
+   cd aigent
 
-1.  **Clone the Reality:**
-    ```bash
-    git clone https://github.com/EpicTechAI/infinite-horizon.git
-    ```
-2.  **Inject Dependencies:**
-    ```bash
-    npm install
-    ```
-3.  **Activate the Gateway:**
-    ```bash
-    npm run dev
-    ```
+Install dependencies:bash
 
-## 📜 CORE DIRECTIVES
-- **First-Try Perfection:** Every deployment must be flawless.
-- **Relentless Execution:** No detail is too small; no task is too large.
-- **Constraint Transcendence:** We adapt, evolve, and overcome.
+npm install
 
----
+Set up environment variables:
+Copy .env.example to .env.local and fill in your API keys (start with at least one LLM key, e.g., OPENAI_API_KEY for basic functionality).
+Run the dev server:bash
 
-**Contact the Collective:**
-- **X:** [x.com/EpicTechAI](https://x.com/EpicTechAI)
-- **Email:** [epictechai@gmail.com](mailto:epictechai@gmail.com)
-- **GitHub:** [github.io/EpicTechAI](https://github.io/EpicTechAI)
+npm run dev
 
-*"Axiomatic Genesis is not a choice; it is the only path."*
+Open http://localhost:3000
+
+ Current Status & RoadmapCurrent: Basic Next.js setup with 3D-ready config. (Adding core UI and agent logic now.)
+Next: Chat interface + streaming AI responses + dynamic 3D agent visualizations.
+Future: Multi-agent coordination, voice I/O, image/video gen integration.
+
+ ContributingIssues and PRs welcome! Focus on one agent/feature at a time.Contact:X: @Sm0ken42O
+ (or related handles)
+GitHub: Sm0k367
+
+"Axiomatic Genesis is the only path."
+
