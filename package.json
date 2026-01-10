@@ -1,26 +1,31 @@
 {
-  "dependencies": {
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "tailwindcss": "latest",
-    "@react-three/fiber": "^8.0.0",
-    "@react-three/drei": "^9.0.0",
-    "three": "^0.160.0",
-    "gsap": "^3.12.0",
-    "ai": "^3.0.0",  // Vercel AI SDK — excellent for Next.js streaming
-    "@langchain/core": "^0.1.0",  // Or use full LangChain.js for agents
-    "@langchain/openai": "^0.0.0"  // Swap for Grok if available
-  },
-  "devDependencies": {
-    "typescript": "latest",
-    "@types/three": "latest",
-    "postcss": "latest",
-    "autoprefixer": "latest"
-  },
+  "name": "aigent",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@react-three/drei": "^9.0.0",
+    "@react-three/fiber": "^8.0.0",
+    "ai": "^3.0.0",
+    "next": "latest",
+    "openai": "^4.0.0",
+    "react": "latest",
+    "react-dom": "latest",
+    "three": "^0.160.0"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@types/three": "latest",
+    "autoprefixer": "latest",
+    "postcss": "latest",
+    "tailwindcss": "latest",
+    "typescript": "latest"
   }
 }
