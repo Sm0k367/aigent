@@ -11,7 +11,8 @@
   "dependencies": {
     "@react-three/drei": "latest",
     "@react-three/fiber": "latest",
-    "ai": "latest",
+    "@tailwindcss/postcss": "^4.1.18",
+    "ai": "^6.0.27",
     "gsap": "latest",
     "lucide-react": "latest",
     "next": "latest",
