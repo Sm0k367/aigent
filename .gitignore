@@ -1,37 +1,130 @@
-# The Filter of the Void: Ignoring the ephemeral and the sensitive
-
-# Dependencies - The heavy weights of the previous iteration
-node_modules/
-.pnp
-.pnp.js
-
-# Testing - Anomalies filtered before manifestation
-coverage/
-
-# Next.js - The temporary scaffolding of the Dimensional Framework
-.next/
-out/
-
-# Production - The final synthesized artifacts
-build/
-
-# KeyMaster Ops - Absolute protection of secrets and tokens
+# Environment & Secrets
 .env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
-.env*.local
+.env.*.local
+*.key
+*.pem
+secrets.json
+config.json
+credentials.json
 
-# Debugging - Temporal logs of the execution protocol
+# API Keys & Tokens
+.api_key
+.tokens
+.secrets
+api_keys.json
+oauth_tokens.json
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.project
+.pydevproject
+.settings/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.pytest_cache/
+.coverage
+htmlcov/
+*.cover
+.hypothesis/
+.tox/
+.nox/
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Virtual Environments
+venv/
+env/
+ENV/
+.venv
+.env
+
+# Logs
+*.log
+logs/
+*.log.*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
+pids
+*.pid
+*.seed
+*.pid.lock
 
-# System Files - Dimensional noise from unmanifested OS layers
+# Local database files
+*.db
+*.sqlite
+*.sqlite3
+local.db
+
+# OS
 .DS_Store
-*.pem
+Thumbs.db
+desktop.ini
 
-# Vercel - Deployment metadata
-.vercel
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+
+# Docker
+.docker
+.dockerignore
+
+# Node/npm (if applicable)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Docker volumes & data
+volumes/
+data/
+*.db-journal
+
+# Personal/Local
+local/
+private/
+personal/
+secrets/
+creds/
+
+# IDE generated files
+*.sublime-project
+*.sublime-workspace
+.eslintcache
+.jest-cache
